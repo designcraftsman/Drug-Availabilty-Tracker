@@ -1,0 +1,57 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Add New Medicine{% endblock %}
+
+{% block content %}
+<div class="container mt-4 p-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Inventory</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add new medicine</li>
+        </ol>
+    </nav>
+
+    <h2 class="mb-3">Add new medicine</h2>
+    <p class="text-muted"><small>*All fields are mandatory, except mentioned as (optional).</small></p>
+
+    <form>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="medicineName" class="form-label">Medicine Name</label>
+                <input type="text" class="form-control" id="medicineName" required>
+            </div>
+            <div class="col-md-6">
+                <label for="medicineId" class="form-label">Medicine ID</label>
+                <input type="text" class="form-control" id="medicineId" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="medicineGroup" class="form-label">Medicine Group</label>
+                <select class="form-select" id="medicineGroup" required>
+                    <option selected disabled value="">- Select Group -</option>
+                    <!-- Add options here -->
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="quantity" class="form-label">Quantity in Number</label>
+                <input type="number" class="form-control" id="quantity" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="howToUse" class="form-label">How to Use</label>
+            <textarea class="form-control" id="howToUse" rows="3" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="sideEffects" class="form-label">Side Effects</label>
+            <textarea class="form-control" id="sideEffects" rows="3" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">Save Details</button>
+    </form>
+</div>
+{% endblock %}

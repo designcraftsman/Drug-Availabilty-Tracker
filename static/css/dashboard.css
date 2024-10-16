@@ -1,0 +1,93 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #f5f5f5;
+}
+.sidebar {
+    width: 200px;
+    background-color: #ffffff;
+    height: 100vh;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+.sidebar h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+.sidebar li {
+    padding: 10px 0;
+    color: #666;
+    cursor: pointer;
+}
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+.summary-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 22%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.card h3 {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+.card p {
+    margin: 10px 0 0;
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+}
+.recent-orders {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.recent-orders h3 {
+    margin-top: 0;
+    color: #333;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+th {
+    background-color: #f8f8f8;
+    font-weight: 500;
+    color: #666;
+}
+.monthly-sales {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.monthly-sales h3 {
+    margin-top: 0;
+    color: #333;
+}
+#monthlySalesChart {
+    width: 100%;
+    height: 300px;
+}

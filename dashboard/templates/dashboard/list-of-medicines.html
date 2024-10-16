@@ -1,0 +1,75 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}List of Medicines{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4 p-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb fs-3">
+            <li class="breadcrumb-item fw-bold">Inventory</li>
+            <li class="breadcrumb-item active fw-bold" aria-current="page">List of Medicines (298)</li>
+        </ol>
+    </nav>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <p class="text-muted mb-0">List of medicines available for sales.</p>
+        <button class="btn btn-danger">+ Add New Item</button>
+    </div>
+
+    <div class="d-flex justify-content-end mb-3">
+        <select class="form-select w-auto">
+            <option selected>- Select Group -</option>
+            <option>Generic Medicine</option>
+            <option>Diabetes</option>
+            <!-- Add more options as needed -->
+        </select>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table  table-hover">
+            <thead>
+                <tr>
+                    <th>Medicine Name <i class="bi bi-arrow-down-up"></i></th>
+                    <th>Medicine ID <i class="bi bi-arrow-down-up"></i></th>
+                    <th>Group Name <i class="bi bi-arrow-down-up"></i></th>
+                    <th>Stock in Qty <i class="bi bi-arrow-down-up"></i></th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Augmentin 625 Duo Tablet</td>
+                    <td>D06ID232435454</td>
+                    <td>Generic Medicine</td>
+                    <td>350</td>
+                    <td><a href="{% url 'drug-details' %}" class="text-primary">View Full Detail »</a></td>
+                </tr>
+                <tr>
+                    <td>Azithral 500 Tablet</td>
+                    <td>D06ID232435451</td>
+                    <td>Generic Medicine</td>
+                    <td>20</td>
+                    <td><a href="{% url 'drug-details' %}" class="text-primary">View Full Detail »</a></td>
+                </tr>
+                <tr>
+                    <td>Ascoril LS Syrup</td>
+                    <td>D06ID232435452</td>
+                    <td>Diabetes</td>
+                    <td>85</td>
+                    <td><a href="{% url 'drug-details' %}" class="text-primary">View Full Detail »</a></td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <nav aria-label="Page navigation" class="d-flex justify-content-center mt-4">
+        <ul class="pagination">
+            <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>
+            <li class="page-item active"><a class="page-link" href="#">Page 01</a></li>
+            <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
+        </ul>
+    </nav>
+</div>
+{% endblock %}

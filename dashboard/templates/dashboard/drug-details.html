@@ -1,0 +1,78 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Azithral 500 Tablet Details{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Inventory</a></li>
+            <li class="breadcrumb-item"><a href="#">List of Medicines</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Azithral 500 Tablet</li>
+        </ol>
+    </nav>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Azithral 500 Tablet</h1>
+        <button class="btn btn-success">Edit Details</button>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="mb-5">Medicine</h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <h2>298</h2>
+                            <small>Medicine ID</small>
+                        </div>
+                        <div class="col-6">
+                            <h2>24</h2>
+                            <small>Medicine Group</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="mb-5">Inventory in Qty</h5>
+                    <div class="row">
+                        <div class="col-4">
+                            <h2>298</h2>
+                            <small>Lifetime Supply</small>
+                        </div>
+                        <div class="col-4">
+                            <h2>290</h2>
+                            <small>Lifetime Sales</small>
+                        </div>
+                        <div class="col-4">
+                            <h2>08</h2>
+                            <small>Stock Left</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4 ">
+        <div class="card-body text-start">
+            <h5 class="card-title mb-5">How to use</h5>
+            <p class=" fs-6 fw-normal">Take this medication by mouth with or without food as directed by your doctor, usually once daily.</p>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body text-start">
+            <h5 class="card-title mb-5">Side Effects</h5>
+            <p class=" fs-6 fw-normal">Dizziness, lightheadedness, drowsiness, nausea, vomiting, tiredness, excess saliva/drooling, blurred vision, weight gain, constipation, headache, and trouble sleeping may occur. If any of these effects persist or worsen, consult your doctor.</p>
+        </div>
+    </div>
+
+    <button class="btn btn-danger">Delete Medicine</button>
+</div>
+{% endblock %}

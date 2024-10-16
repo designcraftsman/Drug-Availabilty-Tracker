@@ -1,0 +1,169 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="px-4">
+    <div class="row justify-content-between px-3 flex-wrap-reverse gap-2  bg-light my-3">
+        <div class="col-2 bg-white rounded p-2 d-flex flex-column justify-content-between">
+            <div class="d-flex align-items-center justify-content-between gap-3" >
+                <div>
+                    <i class="fa-solid fa-users fs-1 p-3 bg-info rounded-circle"></i>
+                </div>
+                <div >
+                    <h3 class="fs-5 my-1">Total Customers</h3>
+                    <p class="fs-4 my-1">{{ total_customers }}</p>
+                </div>
+            </div>
+            <a href="#" class="text-decoration-none">Show Details</a>
+        </div>
+        <div class="col-2 bg-white rounded p-2 d-flex flex-column justify-content-between">
+            <div class="d-flex align-items-center justify-content-between gap-3" >
+                <div>
+                    <i class="fa-solid fa-chart-line fs-1 p-3 bg-success rounded-circle"></i>
+                </div>
+                <div >
+                    <h3 class="fs-5 my-1">Total Sales</h3>
+                    <p class="fs-4 my-1">{{ total_sales }}</p>
+                </div>
+            </div>
+            <a href="#" class="text-decoration-none">Show Details</a>
+        </div>
+        <div class="col-2 bg-white rounded p-2 d-flex flex-column justify-content-between">
+            <div class="d-flex align-items-center justify-content-between gap-3" >
+                <div>
+                    <i class="fa-solid fa-dollar-sign fs-1 p-3 bg-warning rounded-circle"></i>
+                </div>
+                <div >
+                    <h3 class="fs-5 my-1">Total Profit</h3>
+                    <p class="fs-4 my-1">${{ total_profit }}</p>
+                </div>
+            </div>
+            <a href="#" class="text-decoration-none">Show Details</a>
+        </div>
+        <div class="col-2 bg-white rounded p-2 d-flex flex-column justify-content-between">
+            <div class="d-flex align-items-center justify-content-between gap-3" >
+                <div>
+                    <i class="fa-solid fa-exclamation-triangle fs-1 p-3 bg-danger rounded-circle"></i>
+                </div>
+                <div >
+                    <h3 class="fs-5 my-1">Out of Stock</h3>
+                    <p class="fs-4 my-1">{{ out_of_stock }}</p>
+                </div>
+            </div>
+            <a href="#" class="text-decoration-none">Show Details</a>
+        </div>
+    </div>
+    <div class="recent-orders bg-white p-3 rounded">
+        <h3>Recent Sales</h3>
+        <div class="table-responsive bg-white">
+            <table class="table table-adaptive text-dark">
+                <thead>
+                    <tr>
+                        <th>Medicine Name</th>
+                        <th>Expire Date</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in recent_orders %}
+                    <tr>
+                        <td>{{ order.medicine_name }}</td>
+                        <td>{{ order.expire_date }}</td>
+                        <td>{{ order.quantity }}</td>
+                        <td>{{ order.status }}</td>
+                        <td>${{ order.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row my-3 p-3 d-flex justify-content-between">
+        <div class="col-md-7  bg-white  p-3 rounded">
+            <h3>Monthly Progress</h3>
+            <div style="height: 400px;">
+                <canvas id="monthlySalesChart"></canvas>
+            </div>
+        </div>
+        <div class="col-md-4  bg-white  p-3 rounded">
+            <h3>Today's Report</h3>
+            <div style="height: 400px;">
+                <canvas id="earningChart"></canvas>
+            </div>
+        </div>                
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{% static 'js/script.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Monthly Sales Chart
+            var ctx = document.getElementById('monthlySalesChart').getContext('2d');
+            var monthlySalesChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Sales',
+                        data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
+                        backgroundColor: '#4CAF50',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Today's Report Chart (Earning Chart)
+            var earningCtx = document.getElementById('earningChart').getContext('2d');
+            var earningChart = new Chart(earningCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Total Purchase', 'Cash Received', 'Bank Receive', 'Total Service'],
+                    datasets: [{
+                        data: [40, 30, 20, 10],
+                        backgroundColor: ['#FF6384', '#FFCD56', '#4BC0C0', '#36A2EB'],
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        tooltip: {
+                            enabled: true
+                        }
+                    }
+                }
+            });
+
+            // Sidebar toggle functionality
+            var sidebarCollapse = document.getElementById('sidebarCollapse');
+            var wrapper = document.getElementById('wrapper');
+            
+            sidebarCollapse.addEventListener('click', function() {
+                wrapper.classList.toggle('sidebar-collapsed');
+            });
+
+            // Search toggle functionality
+            var searchToggle = document.getElementById('searchToggle');
+            var searchForm = document.getElementById('searchForm');
+            
+            searchToggle.addEventListener('click', function() {
+                searchForm.classList.toggle('d-none');
+                searchForm.classList.toggle('d-flex');
+            });
+        });
+    </script>
+{% endblock %}

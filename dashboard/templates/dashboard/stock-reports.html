@@ -1,0 +1,112 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Stock Report{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Download Report Button -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4>Stock Report</h4>
+        <button class="btn btn-download">
+            <i class="fas fa-download"></i> Download Report
+        </button>
+    </div>
+
+    <!-- Date Range and Medicine Group Filters -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="dateRange" class="form-label">Date Range</label>
+            <div class="input-group">
+                <input type="text" id="dateRange" class="form-control" placeholder="01 December 2021 - 31 December 2021">
+                <span class="input-group-text">
+                    <i class="fas fa-calendar-alt"></i>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="medicineGroup" class="form-label">Medicine Group</label>
+            <select id="medicineGroup" class="form-select">
+                <option selected>- Select Group -</option>
+                <option value="1">Group 1</option>
+                <option value="2">Group 2</option>
+                <option value="3">Group 3</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Stock Graph and Recent Stock Updates -->
+    <div class="row">
+        <!-- Stock Graph -->
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h5>Stock Levels</h5>
+                <!-- Canvas for Chart.js -->
+                <canvas id="stockLineChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Stock Updates List -->
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h5>Recent Stock Updates</h5>
+                <ul class="list-group">
+                    <!-- Placeholder for stock data -->
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Medicine A</span> <span>100 units</span> <span>01 Dec 2021 10:25</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Medicine B</span> <span>75 units</span> <span>02 Dec 2021 18:25</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Medicine C</span> <span>50 units</span> <span>03 Dec 2021 14:30</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Medicine D</span> <span>200 units</span> <span>04 Dec 2021 09:15</span>
+                    </li>
+                    <!-- Add more stock data as needed -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Data for the chart (can be dynamic from Django context)
+    var ctx = document.getElementById('stockLineChart').getContext('2d');
+    var stockLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['1 Dec', '8 Dec', '15 Dec', '22 Dec', '31 Dec'], // X-axis labels (dates)
+            datasets: [{
+                label: 'Stock Levels',
+                data: [500, 450, 600, 400, 550], // Y-axis data (stock numbers)
+                backgroundColor: 'rgba(54, 162, 235, 0.2)', // Fill under the line
+                borderColor: 'rgba(54, 162, 235, 1)', // Line color
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4 // Smoothing of the line
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true, // Y-axis starts at 0
+                    title: {
+                        display: true,
+                        text: 'Stock Quantity'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Date'
+                    }
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
