@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'Manrope';
+    src: url('../../../assets/font/manrope.regular.otf') format('opentype'),
+         url('../../../assets/font/manrope.light.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+ 
+  
+  // Apply the font to an element
+  body {
+    font-family:'Manrope';
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope';
+    font-weight: bold;
+  }

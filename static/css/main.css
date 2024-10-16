@@ -11844,6 +11844,21 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+@font-face {
+  font-family: "Manrope";
+  src: url("../../../assets/font/manrope.regular.otf") format("opentype"), url("../../../assets/font/manrope.light.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: "Manrope";
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: "Manrope";
+  font-weight: bold;
+}
+
 body.dark-mode {
   background-color: #121212;
   color: #ffffff;
