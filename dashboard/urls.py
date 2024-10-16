@@ -12,4 +12,5 @@ urlpatterns = [
     path('drug-details/', views.drug_details, name='drug-details'),
     path('add-medicine/', views.add_medicine, name='add-medicine'),
     path('settings/', views.settings, name='settings'),
+    path('stock-history/', views.stock_history, name='stock-history'),
 ]

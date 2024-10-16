@@ -22,8 +22,8 @@
             <form method="GET" action="">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Check for Medicine Shortages" name="search">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    <div class="input-group-append mx-2">
+                        <button class="btn btn-outline-secondary text-dark bg-primary" type="submit">Search</button>
                     </div>
                 </div>
             </form>
@@ -32,18 +32,31 @@
             <table class="table  table-striped ">
                 <thead>
                     <tr>
-                        <th class="text-primary">ID</th>
-                        <th class="text-primary">Date & Time</th>
+                        <th class="text-primary bg-white">ID</th>
+                        <th class="text-primary bg-white">Date & Time</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Assuming data from context -->
                     {% for record in records %}
                     <tr>
-                        <td>{{ record.id }}</td>
-                        <td>{{ record.date_time }}</td>
+                        <td class="text-dark bg-white">{{ record.id }}</td>
+                        <td class="text-dark bg-white">{{ record.date_time }}</td>
                     </tr>
                     {% endfor %}
+                    <!-- Example rows -->
+                    <tr>
+                        <td class="text-dark bg-white">001</td>
+                        <td class="text-dark bg-white">2023-05-15 09:30:00</td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark bg-white">002</td>
+                        <td class="text-dark bg-white">2023-05-16 14:45:00</td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark bg-white">003</td>
+                        <td class="text-dark bg-white">2023-05-17 11:15:00</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -53,7 +66,7 @@
     <div class="row text-center mt-5">
         <div class="col-md-4">
             <div class="card shadow-sm">
-                <div class="card-body">
+                <div class="card-body bg-white text-dark">
                     <i class="fas fa-prescription-bottle-alt fa-2x mb-2"></i>
                     <h3>298</h3>
                     <p>25 drugs expected to face shortages in the next 60 days.</p>
@@ -63,7 +76,7 @@
         </div>
         <div class="col-md-4">
             <div class="card shadow-sm">
-                <div class="card-body">
+                <div class="card-body bg-white text-dark">
                     <i class="fas fa-exclamation-triangle fa-2x mb-2"></i>
                     <h3>10%</h3>
                     <p>Current Inventory Risk: 10% of total inventory at risk of shortage.</p>
@@ -73,11 +86,11 @@
         </div>
         <div class="col-md-4">
             <div class="card shadow-sm">
-                <div class="card-body">
+                <div class="card-body bg-white text-dark">
                     <i class="fas fa-syringe fa-2x mb-2"></i>
                     <h3>Antibiotics</h3>
                     <p>Most Affected Category: Antibiotics or any specific drug group.</p>
-                    <a href="#" class="btn btn-primary">View more</a>
+                    <a href="#" class="btn btn-primary ">View more</a>
                 </div>
             </div>
         </div>

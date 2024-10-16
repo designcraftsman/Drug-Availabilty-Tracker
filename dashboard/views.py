@@ -39,3 +39,7 @@ def add_medicine(request):
 
 def settings(request):
     return render(request, 'dashboard/settings.html')
+
+def stock_history(request):
+    return render(request, 'dashboard/stock-history.html')
+

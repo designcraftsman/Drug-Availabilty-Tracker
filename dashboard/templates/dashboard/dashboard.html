@@ -62,23 +62,44 @@
             <table class="table table-adaptive text-dark">
                 <thead>
                     <tr>
-                        <th>Medicine Name</th>
-                        <th>Expire Date</th>
-                        <th>Quantity</th>
-                        <th>Status</th>
-                        <th>Price</th>
+                        <th class="text-dark">Medicine Name</th>
+                        <th class="text-dark">Expire Date</th>
+                        <th class="text-dark">Quantity</th>
+                        <th class="text-dark">Status</th>
+                        <th class="text-dark">Price</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for order in recent_orders %}
                     <tr>
-                        <td>{{ order.medicine_name }}</td>
-                        <td>{{ order.expire_date }}</td>
-                        <td>{{ order.quantity }}</td>
-                        <td>{{ order.status }}</td>
-                        <td>${{ order.price }}</td>
+                        <td class="text-dark bg-white">{{ order.medicine_name }}</td>
+                        <td class="text-dark bg-white">{{ order.expire_date }}</td>
+                        <td class="text-dark bg-white">{{ order.quantity }}</td>
+                        <td class="text-dark bg-white">{{ order.status }}</td>
+                        <td class="text-dark bg-white">${{ order.price }}</td>
                     </tr>
                     {% endfor %}
+                    <tr>
+                        <td class="text-dark bg-white">Paracetamol</td>
+                        <td class="text-dark bg-white">2024-06-30</td>
+                        <td class="text-dark bg-white">100</td>
+                        <td class="text-dark bg-white">In Stock</td>
+                        <td class="text-dark bg-white">$5.99</td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark bg-white">Amoxicillin</td>
+                        <td class="text-dark bg-white">2023-12-31</td>
+                        <td class="text-dark bg-white">50</td>
+                        <td class="text-dark bg-white">Low Stock</td>
+                        <td class="text-dark bg-white">$12.50</td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark bg-white">Ibuprofen</td>
+                        <td class="text-dark bg-white">2025-03-15</td>
+                        <td class="text-dark bg-white">200</td>
+                        <td class="text-dark bg-white">In Stock</td>
+                        <td class="text-dark bg-white">$7.25</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
