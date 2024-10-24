@@ -1,40 +1,41 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}List of Medicines{% endblock %}
+{% block title %}{% trans "List of Medicines" %}{% endblock %}
 
 {% block content %}
 <div class="container-fluid mt-4 p-4">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb fs-3">
-            <li class="breadcrumb-item fw-bold">Inventory</li>
-            <li class="breadcrumb-item active fw-bold" aria-current="page">List of Medicines (298)</li>
+            <li class="breadcrumb-item fw-bold mx-3">{% trans "Inventory" %}</li>
+            <li class="breadcrumb-item active fw-bold" id="active-breadcrumb-item" aria-current="page">{% trans "List of Medicines" %} (298)</li>
         </ol>
     </nav>
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <p class="text-muted mb-0">List of medicines available for sales.</p>
-        <button class="btn btn-danger">+ Add New Item</button>
+        <p class="text-muted mb-0">{% trans "List of medicines available for sales." %}</p>
+        <button class="btn btn-danger">+ {% trans "Add New Item" %}</button>
     </div>
 
     <div class="d-flex justify-content-end mb-3">
         <select class="form-select w-auto">
-            <option selected>- Select Group -</option>
-            <option>Generic Medicine</option>
-            <option>Diabetes</option>
+            <option selected>{% trans "- Select Group -" %}</option>
+            <option>{% trans "Generic Medicine" %}</option>
+            <option>{% trans "Diabetes" %}</option>
             <!-- Add more options as needed -->
         </select>
     </div>
 
-    <div class="table-responsive  ">
-        <table class="table table-adaptive bg-white   table-hover">
+    <div class="table-responsive">
+        <table class="table table-adaptive bg-white table-hover">
             <thead class="bg-white">
-                <tr class=" bg-white">
-                    <th class="text-dark">Medicine Name <i class="bi bi-arrow-down-up"></i></th>
-                    <th class="text-dark">Medicine ID <i class="bi bi-arrow-down-up"></i></th>
-                    <th class="text-dark">Group Name <i class="bi bi-arrow-down-up"></i></th>
-                    <th class="text-dark">Stock in Qty <i class="bi bi-arrow-down-up"></i></th>
-                    <th class="text-dark">Action</th>
+                <tr class="bg-white">
+                    <th class="text-dark">{% trans "Medicine Name" %} <i class="bi bi-arrow-down-up"></i></th>
+                    <th class="text-dark">{% trans "Medicine ID" %} <i class="bi bi-arrow-down-up"></i></th>
+                    <th class="text-dark">{% trans "Group Name" %} <i class="bi bi-arrow-down-up"></i></th>
+                    <th class="text-dark">{% trans "Stock in Qty" %} <i class="bi bi-arrow-down-up"></i></th>
+                    <th class="text-dark">{% trans "Action" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,7 +68,7 @@
     <nav aria-label="Page navigation" class="d-flex justify-content-center mt-4">
         <ul class="pagination">
             <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>
-            <li class="page-item active"><a class="page-link" href="#">Page 01</a></li>
+            <li class="page-item active"><a class="page-link" href="#">{% trans "Page 01" %}</a></li>
             <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
         </ul>
     </nav>

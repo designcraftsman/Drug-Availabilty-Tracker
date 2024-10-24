@@ -1,72 +1,72 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load i18n %}
 
-
-{% block title %}Dashboard{% endblock %}
+{% block title %}{% trans "Dashboard" %}{% endblock %}
 
 {% block content %}
-<div class="px-4">
-    <div class="row justify-content-between px-3 flex-wrap-reverse gap-2  bg-light my-3">
-        <div class="col-2 bg-white rounded p-2 d-flex flex-column justify-content-between">
-            <div class="d-flex align-items-center justify-content-between gap-3" >
-                <div>
-                    <i class="fa-solid fa-users fs-1 p-3 bg-info rounded-circle"></i>
+<div class="px-4 bg-dark-grey">
+    <div class="d-flex flex-wrap justify-content-between bg-light my-3">
+        <div class="bg-white shadow rounded p-2 d-flex flex-column justify-content-between mb-2 mx-1" style="flex: 1 1 200px;">
+            <div class="d-flex align-items-center justify-content-start gap-1">
+                <div class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-users fs-6 p-2 bg-info rounded-circle" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;"></i>
                 </div>
-                <div >
-                    <h3 class="fs-5 my-1">Total Customers</h3>
+                <div class="ms-2">
+                    <h3 class="fs-5 my-1">{% trans "Total Customers" %}</h3>
                     <p class="fs-4 my-1">{{ total_customers }}</p>
                 </div>
             </div>
-            <a href="#" class="text-decoration-none">Show Details</a>
+            <a href="#" class="text-decoration-none fs-10">{% trans "View Details" %}</a>
         </div>
-        <div class="col-2 bg-white rounded p-2 d-flex flex-column justify-content-between">
-            <div class="d-flex align-items-center justify-content-between gap-3" >
-                <div>
-                    <i class="fa-solid fa-chart-line fs-1 p-3 bg-success rounded-circle"></i>
+        <div class="bg-white shadow rounded p-2 d-flex flex-column justify-content-between mb-2 mx-1" style="flex: 1 1 200px;">
+            <div class="d-flex align-items-center justify-content-start gap-1">
+                <div class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-chart-line fs-6 p-2 bg-success rounded-circle" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;"></i>
                 </div>
-                <div >
-                    <h3 class="fs-5 my-1">Total Sales</h3>
+                <div class="ms-2">
+                    <h3 class="fs-5 my-1">{% trans "Total Sales" %}</h3>
                     <p class="fs-4 my-1">{{ total_sales }}</p>
                 </div>
             </div>
-            <a href="#" class="text-decoration-none">Show Details</a>
+            <a href="#" class="text-decoration-none fs-10">{% trans "View Details" %}</a>
         </div>
-        <div class="col-2 bg-white rounded p-2 d-flex flex-column justify-content-between">
-            <div class="d-flex align-items-center justify-content-between gap-3" >
-                <div>
-                    <i class="fa-solid fa-dollar-sign fs-1 p-3 bg-warning rounded-circle"></i>
+        <div class="bg-white shadow rounded p-2 d-flex flex-column justify-content-between mb-2 mx-1" style="flex: 1 1 200px;">
+            <div class="d-flex align-items-center justify-content-start gap-1">
+                <div class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-dollar-sign fs-6 p-2 bg-warning rounded-circle" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;"></i>
                 </div>
-                <div >
-                    <h3 class="fs-5 my-1">Total Profit</h3>
-                    <p class="fs-4 my-1">${{ total_profit }}</p>
+                <div class="ms-2">
+                    <h3 class="fs-5 my-1">{% trans "Total Profit" %}</h3>
+                    <p class="fs-4 my-1">{{ total_profit }}</p>
                 </div>
             </div>
-            <a href="#" class="text-decoration-none">Show Details</a>
+            <a href="#" class="text-decoration-none fs-10">{% trans "View Details" %}</a>
         </div>
-        <div class="col-2 bg-white rounded p-2 d-flex flex-column justify-content-between">
-            <div class="d-flex align-items-center justify-content-between gap-3" >
-                <div>
-                    <i class="fa-solid fa-exclamation-triangle fs-1 p-3 bg-danger rounded-circle"></i>
+        <div class="bg-white shadow rounded p-2 d-flex flex-column justify-content-between mb-2 mx-1" style="flex: 1 1 200px;">
+            <div class="d-flex align-items-center justify-content-start gap-1">
+                <div class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-exclamation-triangle fs-6 p-2 bg-danger rounded-circle" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;"></i>
                 </div>
-                <div >
-                    <h3 class="fs-5 my-1">Out of Stock</h3>
+                <div class="ms-2">
+                    <h3 class="fs-5 my-1">{% trans "Out of Stock" %}</h3>
                     <p class="fs-4 my-1">{{ out_of_stock }}</p>
                 </div>
             </div>
-            <a href="#" class="text-decoration-none">Show Details</a>
+            <a href="#" class="text-decoration-none fs-10">{% trans "View Details" %}</a>
         </div>
     </div>
-    <div class="recent-orders bg-white p-3 rounded">
-        <h3>Recent Sales</h3>
+    <div class="recent-orders shadow bg-white p-3 rounded">
+        <h5 class="fw-light">{% trans "Recent Sales" %}</h5>
         <div class="table-responsive bg-white">
             <table class="table table-adaptive text-dark">
                 <thead>
                     <tr>
-                        <th class="text-dark">Medicine Name</th>
-                        <th class="text-dark">Expire Date</th>
-                        <th class="text-dark">Quantity</th>
-                        <th class="text-dark">Status</th>
-                        <th class="text-dark">Price</th>
+                        <th class="text-dark">{% trans "Medicine Name" %}</th>
+                        <th class="text-dark">{% trans "Expiry Date" %}</th>
+                        <th class="text-dark">{% trans "Quantity" %}</th>
+                        <th class="text-dark">{% trans "Status" %}</th>
+                        <th class="text-dark">{% trans "Price" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,46 +76,83 @@
                         <td class="text-dark bg-white">{{ order.expire_date }}</td>
                         <td class="text-dark bg-white">{{ order.quantity }}</td>
                         <td class="text-dark bg-white">{{ order.status }}</td>
-                        <td class="text-dark bg-white">${{ order.price }}</td>
+                        <td class="text-dark bg-white">{{ order.price }} {% trans "dh" %}</td>
                     </tr>
                     {% endfor %}
                     <tr>
-                        <td class="text-dark bg-white">Paracetamol</td>
+                        <td class="text-dark bg-white">{% trans "Paracetamol" %}</td>
                         <td class="text-dark bg-white">2024-06-30</td>
                         <td class="text-dark bg-white">100</td>
-                        <td class="text-dark bg-white">In Stock</td>
-                        <td class="text-dark bg-white">$5.99</td>
+                        <td class="text-dark bg-white">{% trans "Available" %}</td>
+                        <td class="text-dark bg-white">5.99 {% trans "dh" %}</td>
                     </tr>
                     <tr>
-                        <td class="text-dark bg-white">Amoxicillin</td>
+                        <td class="text-dark bg-white">{% trans "Amoxicillin" %}</td>
                         <td class="text-dark bg-white">2023-12-31</td>
                         <td class="text-dark bg-white">50</td>
-                        <td class="text-dark bg-white">Low Stock</td>
-                        <td class="text-dark bg-white">$12.50</td>
+                        <td class="text-dark bg-white">{% trans "Low Stock" %}</td>
+                        <td class="text-dark bg-white">12.50 {% trans "dh" %}</td>
                     </tr>
                     <tr>
-                        <td class="text-dark bg-white">Ibuprofen</td>
+                        <td class="text-dark bg-white">{% trans "Ibuprofen" %}</td>
                         <td class="text-dark bg-white">2025-03-15</td>
                         <td class="text-dark bg-white">200</td>
-                        <td class="text-dark bg-white">In Stock</td>
-                        <td class="text-dark bg-white">$7.25</td>
+                        <td class="text-dark bg-white">{% trans "Available" %}</td>
+                        <td class="text-dark bg-white">7.25 {% trans "dh" %}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="row my-3 p-3 d-flex justify-content-between">
-        <div class="col-md-7  bg-white  p-3 rounded">
-            <h3>Monthly Progress</h3>
-            <div style="height: 400px;">
-                <canvas id="monthlySalesChart"></canvas>
+    <div class="row my-3 py-1 d-flex justify-content-between g-3">
+        <div class="col-md-8">
+            <div class="shadow bg-white p-3 rounded h-100">
+                <h5 class="fw-light">{% trans "Monthly Progress" %}</h5>
+                <div style="height: 250px;">
+                    <canvas id="monthlySalesChart"></canvas>
+                </div>
             </div>
         </div>
-        <div class="col-md-4  bg-white  p-3 rounded">
-            <h3>Today's Report</h3>
-            <div style="height: 400px;">
-                <canvas id="earningChart"></canvas>
-            </div>
+        <div class="col-md-4">
+            <div class="shadow bg-white p-3 rounded h-100">
+                <h5 class="fw-light">{% trans "Daily Report" %}</h5>
+                <div class="row justify-content-center">
+                    <!-- Circular Chart -->
+                    <div class="report-container col-12 col-lg-6 d-flex justify-content-center">
+                        <svg class="circular-chart" viewBox="0 0 36 36">
+                            <!-- Red circle -->
+                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path class="circle red" stroke-dasharray="20, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+            
+                            <!-- Yellow circle -->
+                            <path class="circle-bg" d="M18 4.5 a 13.5 13.5 0 0 1 0 27 a 13.5 13.5 0 0 1 0 -27"/>
+                            <path class="circle yellow" stroke-dasharray="45, 100" d="M18 4.5 a 13.5 13.5 0 0 1 0 27 a 13.5 13.5 0 0 1 0 -27"/>
+            
+                            <!-- Blue circle -->
+                            <path class="circle-bg" d="M18 6.5 a 11.5 11.5 0 0 1 0 23 a 11.5 11.5 0 0 1 0 -23"/>
+                            <path class="circle blue" stroke-dasharray="76, 100" d="M18 6.5 a 11.5 11.5 0 0 1 0 23 a 11.5 11.5 0 0 1 0 -23"/>
+            
+                            <!-- Green circle -->
+                            <path class="circle-bg" d="M18 8.5 a 9.5 9.5 0 0 1 0 19 a 9.5 9.5 0 0 1 0 -19"/>
+                            <path class="circle green" stroke-dasharray="10, 100" d="M18 8.5 a 9.5 9.5 0 0 1 0 19 a 9.5 9.5 0 0 1 0 -19"/>
+                        </svg>
+                    </div>
+            
+                    <!-- Earnings and Legend -->
+                    <div class="earnings-legend col-12 col-lg-6 d-flex flex-column align-items-center">
+                        <div class="total-earnings text-center">
+                            <h6>{% trans "Total Earnings" %}</h6>
+                            <h5>5098.00 {% trans "dh" %} <span style="color: green;">35% &#9650;</span></h5>
+                        </div>
+                        <ul class="legend">
+                            <li><i class="bi bi-dot red"></i> {% trans "Total Purchases" %}</li>
+                            <li><i class="bi bi-dot yellow"></i> {% trans "Cash Received" %}</li>
+                            <li><i class="bi bi-dot blue"></i> {% trans "Bank Receipts" %}</li>
+                            <li><i class="bi bi-dot green"></i> {% trans "Total Services" %}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>            
         </div>                
     </div>
 </div>
@@ -127,49 +164,28 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Monthly Sales Chart
             var ctx = document.getElementById('monthlySalesChart').getContext('2d');
-            var monthlySalesChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                    datasets: [{
-                        label: 'Sales',
-                        data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
-                        backgroundColor: '#4CAF50',
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
+        var monthlySalesChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    gettext('January'), gettext('February'), gettext('March'), 
+                    gettext('April'), gettext('May'), gettext('June'), 
+                    gettext('July'), gettext('August'), gettext('September'), 
+                    gettext('October'), gettext('November'), gettext('December')
+                ],
+                datasets: [{
+                    label: gettext('Sales'),
+                    data: [73, 45, 92, 18, 56, 84, 39, 67, 101, 28, 59, 76],
+                    backgroundColor: '#4CAF50',
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
 
-            // Today's Report Chart (Earning Chart)
-            var earningCtx = document.getElementById('earningChart').getContext('2d');
-            var earningChart = new Chart(earningCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Total Purchase', 'Cash Received', 'Bank Receive', 'Total Service'],
-                    datasets: [{
-                        data: [40, 30, 20, 10],
-                        backgroundColor: ['#FF6384', '#FFCD56', '#4BC0C0', '#36A2EB'],
-                        hoverOffset: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                        },
-                        tooltip: {
-                            enabled: true
-                        }
-                    }
-                }
-            });
-
-            // Sidebar toggle functionality
+            // Sidebar toggle function
             var sidebarCollapse = document.getElementById('sidebarCollapse');
             var wrapper = document.getElementById('wrapper');
             
@@ -177,7 +193,7 @@
                 wrapper.classList.toggle('sidebar-collapsed');
             });
 
-            // Search toggle functionality
+            // Search toggle function
             var searchToggle = document.getElementById('searchToggle');
             var searchForm = document.getElementById('searchForm');
             

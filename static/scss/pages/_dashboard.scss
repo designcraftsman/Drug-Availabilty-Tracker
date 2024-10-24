@@ -1,4 +1,7 @@
 
+.fs-10{
+    font-size: 10px !important;
+}
 .card {
     background-color: #fff;
     border-radius: 10px;
@@ -54,7 +57,7 @@
   
         .status {
             &.Delivered {
-                color: green;
+                color:$primary;
             }
   
             &.Pending {

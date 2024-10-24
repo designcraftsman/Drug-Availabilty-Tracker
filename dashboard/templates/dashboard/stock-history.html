@@ -1,35 +1,36 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Stock Report{% endblock %}
+{% block title %}{% trans "Stock Report" %}{% endblock %}
 
 {% block content %}
 <div class="container-fluid mt-4 p-4">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb fs-3">
-            <li class="breadcrumb-item fw-bold">Inventory</li>
-            <li class="breadcrumb-item active fw-bold" aria-current="page">Stock Report</li>
+            <li class="breadcrumb-item fw-bold">{% trans "Inventory" %}</li>
+            <li class="breadcrumb-item  fw-bold" aria-current="page">{% trans "Stock Report" %}</li>
         </ol>
     </nav>
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <p class="text-muted mb-0">Stock history and movement report.</p>
-        <button class="btn btn-danger">Generate Report</button>
+        <p class="text-muted mb-0">{% trans "Stock history and movement report." %}</p>
+        <button class="btn btn-danger"> <i class="bi bi-stars"></i> {% trans "Generate Report" %}</button>
     </div>
 
     <div class="d-flex justify-content-end mb-3">
-        <select class="form-select w-auto me-2">
-            <option selected>- Select Medicine -</option>
-            <option>Augmentin 625 Duo Tablet</option>
-            <option>Paracetamol</option>
+        <select class="form-select w-auto me-2 bg-white text-dark mx-2">
+            <option selected>{% trans "- Select Medicine -" %}</option>
+            <option>{% trans "Augmentin 625 Duo Tablet" %}</option>
+            <option>{% trans "Paracetamol" %}</option>
             <!-- Add more options as needed -->
         </select>
-        <select class="form-select w-auto">
-            <option selected>- Select Date Range -</option>
-            <option>Last 7 days</option>
-            <option>Last 30 days</option>
-            <option>Last 3 months</option>
-            <option>Custom Range</option>
+        <select class="form-select w-auto bg-white text-dark ">
+            <option selected>{% trans "- Select Date Range -" %}</option>
+            <option>{% trans "Last 7 days" %}</option>
+            <option>{% trans "Last 30 days" %}</option>
+            <option>{% trans "Last 3 months" %}</option>
+            <option>{% trans "Custom Range" %}</option>
         </select>
     </div>
 
@@ -37,12 +38,12 @@
         <table class="table table-adaptive bg-white table-hover">
             <thead class="bg-white">
                 <tr class="bg-white">
-                    <th class="text-dark">Date <i class="bi bi-arrow-down-up"></i></th>
-                    <th class="text-dark">Medicine Name <i class="bi bi-arrow-down-up"></i></th>
-                    <th class="text-dark">Medicine ID <i class="bi bi-arrow-down-up"></i></th>
-                    <th class="text-dark">Transaction Type <i class="bi bi-arrow-down-up"></i></th>
-                    <th class="text-dark">Quantity <i class="bi bi-arrow-down-up"></i></th>
-                    <th class="text-dark">Balance <i class="bi bi-arrow-down-up"></i></th>
+                    <th class="text-dark">{% trans "Date" %} <i class="bi bi-arrow-down-up"></i></th>
+                    <th class="text-dark">{% trans "Medicine Name" %} <i class="bi bi-arrow-down-up"></i></th>
+                    <th class="text-dark">{% trans "Medicine ID" %} <i class="bi bi-arrow-down-up"></i></th>
+                    <th class="text-dark">{% trans "Transaction Type" %} <i class="bi bi-arrow-down-up"></i></th>
+                    <th class="text-dark">{% trans "Quantity" %} <i class="bi bi-arrow-down-up"></i></th>
+                    <th class="text-dark">{% trans "Balance" %} <i class="bi bi-arrow-down-up"></i></th>
                 </tr>
             </thead>
             <tbody>
@@ -78,7 +79,7 @@
     <nav aria-label="Page navigation" class="d-flex justify-content-center mt-4">
         <ul class="pagination">
             <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>
-            <li class="page-item active"><a class="page-link" href="#">Page 01</a></li>
+            <li class="page-item active"><a class="page-link" href="#">{% trans "Page 01" %}</a></li>
             <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
         </ul>
     </nav>

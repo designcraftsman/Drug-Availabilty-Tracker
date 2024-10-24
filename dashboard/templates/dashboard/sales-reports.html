@@ -1,36 +1,37 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Sales Report{% endblock %}
+{% block title %}{% trans "Sales Reports" %}{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
     <!-- Download Report Button -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h4>Sales Report</h4>
-        <button class="btn btn-download">
-            <i class="fas fa-download"></i> Download Report
+        <h4>{% trans "Sales Reports" %}</h4>
+        <button class="btn btn-download btn-primary">
+            <i class="fas fa-download"></i> {% trans "Download Report" %}
         </button>
     </div>
 
     <!-- Date Range and Medicine Group Filters -->
     <div class="row mb-4">
         <div class="col-md-6">
-            <label for="dateRange" class="form-label">Date Range</label>
+            <label for="dateRange" class="form-label">{% trans "Date Range" %}</label>
             <div class="input-group">
-                <input type="text" id="dateRange" class="form-control" placeholder="01 December 2021 - 31 December 2021">
+                <input type="text" id="dateRange" class="form-control" placeholder="{% trans '01 December 2021 - 31 December 2021' %}">
                 <span class="input-group-text">
                     <i class="fas fa-calendar-alt"></i>
                 </span>
             </div>
         </div>
         <div class="col-md-6">
-            <label for="medicineGroup" class="form-label">Medicine Group</label>
+            <label for="medicineGroup" class="form-label">{% trans "Medicine Group" %}</label>
             <select id="medicineGroup" class="form-select bg-white text-dark">
-                <option selected>- Select Group -</option>
-                <option value="1">Group 1</option>
-                <option value="2">Group 2</option>
-                <option value="3">Group 3</option>
+                <option selected>{% trans "- Select Group -" %}</option>
+                <option value="1">{% trans "Group 1" %}</option>
+                <option value="2">{% trans "Group 2" %}</option>
+                <option value="3">{% trans "Group 3" %}</option>
             </select>
         </div>
     </div>
@@ -39,8 +40,8 @@
     <div class="row">
         <!-- Sales Graph -->
         <div class="col-md-6">
-            <div class="card p-3">
-                <h5>Sales Made</h5>
+            <div class="card shadow p-3">
+                <h5 class="text-dark">{% trans "Sales Made" %}</h5>
                 <!-- Canvas for Chart.js -->
                 <canvas id="salesLineChart" width="400" height="300"></canvas>
             </div>
@@ -48,21 +49,21 @@
 
         <!-- Recent Sales List -->
         <div class="col-md-6">
-            <div class="card p-3">
-                <h5 class="text-dark">Recent Sales</h5>
+            <div class="card shadow p-3">
+                <h5 class="text-dark">{% trans "Recent Sales" %}</h5>
                 <ul class="list-group">
                     <!-- Placeholder for sales data -->
-                    <li class="list-group-item   d-flex justify-content-between text-dark bg-white">
-                        <span>2485858548598</span> <span>01 Dec 2021 10:25</span>
+                    <li class="list-group-item d-flex justify-content-between text-dark bg-white">
+                        <span>2485858548598</span> <span>{% trans "01 Dec 2021 10:25" %}</span>
                     </li>
-                    <li class="list-group-item   d-flex justify-content-between text-dark bg-white">
-                        <span>2485858548577</span> <span>02 Dec 2021 18:25</span>
+                    <li class="list-group-item d-flex justify-content-between text-dark bg-white">
+                        <span>2485858548577</span> <span>{% trans "02 Dec 2021 18:25" %}</span>
                     </li>
-                    <li class="list-group-item   d-flex justify-content-between text-dark bg-white">
-                        <span>2485858548577</span> <span>02 Dec 2021 18:25</span>
+                    <li class="list-group-item d-flex justify-content-between text-dark bg-white">
+                        <span>2485858548577</span> <span>{% trans "02 Dec 2021 18:25" %}</span>
                     </li>
-                    <li class="list-group-item   d-flex justify-content-between text-dark bg-white">
-                        <span>2485858548577</span> <span>02 Dec 2021 18:25</span>
+                    <li class="list-group-item d-flex justify-content-between text-dark bg-white">
+                        <span>2485858548577</span> <span>{% trans "02 Dec 2021 18:25" %}</span>
                     </li>
                     <!-- Add more sales data as needed -->
                 </ul>
@@ -74,17 +75,20 @@
 
 {% block extra_scripts %}
 <script>
-     // Data for the chart (can be dynamic from Django context)
-     var ctx = document.getElementById('salesLineChart').getContext('2d');
+    // Data for the chart (can be dynamic from Django context)
+    var ctx = document.getElementById('salesLineChart').getContext('2d');
     var salesLineChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['1 Dec', '8 Dec', '15 Dec', '22 Dec', '31 Dec'], // X-axis labels (dates)
+            labels: [
+                '{% trans "1 Dec" %}', '{% trans "8 Dec" %}', '{% trans "15 Dec" %}', 
+                '{% trans "22 Dec" %}', '{% trans "31 Dec" %}'
+            ], // X-axis labels (dates)
             datasets: [{
-                label: 'Sales Made',
+                label: '{% trans "Sales Made" %}',
                 data: [50, 150, 100, 200, 170], // Y-axis data (sales numbers)
-                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Fill under the line
-                borderColor: 'rgba(75, 192, 192, 1)', // Line color
+                backgroundColor: 'rgba(40, 185, 94, 0.2)', // Fill under the line (transparent green)
+                borderColor: 'rgb(40, 185, 94)', // Line color (non-transparent green)
                 borderWidth: 2,
                 fill: true,
                 tension: 0.4 // Smoothing of the line
@@ -96,13 +100,13 @@
                     beginAtZero: true, // Y-axis starts at 0
                     title: {
                         display: true,
-                        text: 'Number of Sales'
+                        text: '{% trans "Number of Sales" %}'
                     }
                 },
                 x: {
                     title: {
                         display: true,
-                        text: 'Date'
+                        text: '{% trans "Date" %}'
                     }
                 }
             }

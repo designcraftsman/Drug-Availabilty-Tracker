@@ -1,28 +1,29 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Settings{% endblock %}
+{% block title %}{% trans "Settings" %}{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="mb-4 text-dark">Configurations</h1>
-    <p class="text-muted mb-4 text-dark">Configure your pharmacy information.</p>
+    <h1 class="mb-4 text-dark">{% trans "Configurations" %}</h1>
+    <p class="text-muted mb-4 text-dark">{% trans "Configure your pharmacy information." %}</p>
 
     <div class="row">
         <div class="col-md-6 mb-4">
             <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0 text-dark">Branding</h5>
+                <div class="card shadow-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 text-dark">{% trans "Branding" %}</h5>
                     <i class="fas fa-check-circle text-success"></i>
                 </div>
-                <div class="card-body text-start">
+                <div class="card shadow-body text-start">
                     <div class="mb-3">
-                        <label for="pharmacyName" class="form-label text-dark">Enter Name</label>
+                        <label for="pharmacyName" class="form-label text-dark">{% trans "Enter Name" %}</label>
                         <input type="text" class="form-control" id="pharmacyName" value="PH349TY228">
-                        <div class="form-text text-dark">Pharmacy Name</div>
+                        <div class="form-text text-dark">{% trans "Pharmacy Name" %}</div>
                     </div>
                     <div>
-                        <label for="pharmacyId" class="form-label text-dark">Pharmacy ID</label>
+                        <label for="pharmacyId" class="form-label text-dark">{% trans "Pharmacy ID" %}</label>
                         <input type="text" class="form-control" id="pharmacyId" value="PH349TY228" readonly>
                     </div>
                 </div>
@@ -30,18 +31,18 @@
         </div>
         <div class="col-md-6 mb-4">
             <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0 text-dark">Owner</h5>
+                <div class="card shadow shadow-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 text-dark">{% trans "Owner" %}</h5>
                     <i class="fas fa-check-circle text-success"></i>
                 </div>
-                <div class="card-body text-start">
+                <div class="card shadow-body text-start">
                     <div class="mb-3">
-                        <label for="ownerName" class="form-label text-dark">Enter Name</label>
+                        <label for="ownerName" class="form-label text-dark">{% trans "Enter Name" %}</label>
                         <input type="text" class="form-control" id="ownerName" value="user@mail.com">
-                        <div class="form-text text-dark">Owner Name</div>
+                        <div class="form-text text-dark">{% trans "Owner Name" %}</div>
                     </div>
                     <div>
-                        <label for="ownerEmail" class="form-label text-dark">Email ID</label>
+                        <label for="ownerEmail" class="form-label text-dark">{% trans "Email ID" %}</label>
                         <input type="email" class="form-control" id="ownerEmail" value="user@mail.com" readonly>
                     </div>
                 </div>
@@ -52,27 +53,20 @@
     <div class="row">
         <div class="col-md-6 mb-4">
             <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0 text-dark">Preferences</h5>
+                <div class="card shadow-header">
+                    <h5 class="mb-0 text-dark">{% trans "Preferences" %}</h5>
                 </div>
-                <div class="card-body text-start">
+                <div class="card shadow-body text-start">
                     <form id="themeForm">
                         <div class="mb-3">
-                            <label class="form-label text-dark">Theme Mode</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="themeMode" id="lightMode" value="light" checked>
-                                <label class="form-check-label text-dark" for="lightMode">
-                                    Light Mode
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="themeMode" id="darkMode" value="dark">
-                                <label class="form-check-label text-dark" for="darkMode">
-                                    Dark Mode
+                            <label class="form-label text-dark">{% trans "Theme Mode" %}</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="themeToggle">
+                                <label class="form-check-label text-dark" for="themeToggle">
+                                    {% trans "Dark Mode" %}
                                 </label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save Preferences</button>
                     </form>
                 </div>
             </div>
@@ -85,12 +79,12 @@
 <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const themeForm = document.getElementById('themeForm');
+    const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
 
     // Function to set theme
-    function setTheme(theme) {
-        if (theme === 'dark') {
+    function setTheme(isDark) {
+        if (isDark) {
             body.classList.add('dark-mode');
             localStorage.setItem('theme', 'dark');
         } else {
@@ -101,16 +95,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Check for saved theme preference or default to light
     const savedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(savedTheme);
+    setTheme(savedTheme === 'dark');
 
-    // Set initial radio button state
-    document.querySelector(`input[name="themeMode"][value="${savedTheme}"]`).checked = true;
+    // Set initial toggle state
+    themeToggle.checked = savedTheme === 'dark';
 
-    // Handle form submission
-    themeForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const selectedTheme = document.querySelector('input[name="themeMode"]:checked').value;
-        setTheme(selectedTheme);
+    // Handle toggle change
+    themeToggle.addEventListener('change', function() {
+        setTheme(this.checked);
     });
 });
 </script>

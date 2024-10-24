@@ -1,29 +1,30 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Predictions Report{% endblock %}
+{% block title %}{% trans "Predictions Report" %}{% endblock %}
 
 {% block content %}
 <div class="container mt-4 p-4">
     <!-- Overall Stock Section -->
     <div class="row">
         <div class="col-12">
-            <h4>Predictions</h4>
-            <p>AI predictions for what is likely gonna happen</p>
+            <h4>{% trans "Predictions" %}</h4>
+            <p>{% trans "AI predictions for what is likely gonna happen" %}</p>
         </div>
     </div>
     
     <!-- Monthly Progress Chart -->
     <div class="row">
-        <div class="col-7 bg-white mx-auto p-3 rounded">
+        <div class="col-7 shadow bg-white mx-auto p-3 rounded">
             <canvas id="monthlyProgressChart"></canvas>
         </div>
-        <div class="col-4 bg-white mx-auto p-3 rounded">
+        <div class="col-4 shadow bg-white mx-auto p-3 rounded">
             <form method="GET" action="">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Check for Medicine Shortages" name="search">
+                    <input type="search" class="form-control" placeholder="{% trans 'Check for Medicine Shortages' %}" name="search">
                     <div class="input-group-append mx-2">
-                        <button class="btn btn-outline-secondary text-dark bg-primary" type="submit">Search</button>
+                        <button class="btn btn-outline-secondary text-dark bg-primary" type="submit">{% trans "Search" %}</button>
                     </div>
                 </div>
             </form>
@@ -32,8 +33,8 @@
             <table class="table  table-striped ">
                 <thead>
                     <tr>
-                        <th class="text-primary bg-white">ID</th>
-                        <th class="text-primary bg-white">Date & Time</th>
+                        <th class="text-primary bg-white">{% trans "ID" %}</th>
+                        <th class="text-primary bg-white">{% trans "Date & Time" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,32 +66,35 @@
     <!-- Expected Stats Section -->
     <div class="row text-center mt-5">
         <div class="col-md-4">
-            <div class="card shadow-sm">
-                <div class="card-body bg-white text-dark">
-                    <i class="fas fa-prescription-bottle-alt fa-2x mb-2"></i>
+            <div class="card shadow h-100 position-relative">
+                <span class="position-absolute top-0 end-0 badge bg-danger m-2">{% trans "Alert" %}</span>
+                <div class="text-dark d-flex flex-column h-100">
+                    <i class="fas fa-prescription-bottle-alt fa-2x mb-2 mt-3"></i>
                     <h3>298</h3>
-                    <p>25 drugs expected to face shortages in the next 60 days.</p>
-                    <a href="#" class="btn btn-primary">View Full List</a>
+                    <p class="flex-grow-1">{% trans "25 drugs expected to face shortages in the next 60 days." %}</p>
+                    <a href="#" class="btn btn-primary mb-3">{% trans "View Full List" %}</a>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card shadow-sm">
-                <div class="card-body bg-white text-dark">
-                    <i class="fas fa-exclamation-triangle fa-2x mb-2"></i>
+            <div class="card shadow h-100 position-relative">
+                <span class="position-absolute top-0 end-0 badge bg-warning m-2">{% trans "Alert" %}</span>
+                <div class=" text-dark d-flex flex-column h-100">
+                    <i class="fas fa-exclamation-triangle fa-2x mb-2 mt-3"></i>
                     <h3>10%</h3>
-                    <p>Current Inventory Risk: 10% of total inventory at risk of shortage.</p>
-                    <a href="#" class="btn btn-primary">View Full List</a>
+                    <p class="flex-grow-1">{% trans "Current Inventory Risk: 10% of total inventory at risk of shortage." %}</p>
+                    <a href="#" class="btn btn-primary mb-3">{% trans "View Full List" %}</a>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card shadow-sm">
-                <div class="card-body bg-white text-dark">
-                    <i class="fas fa-syringe fa-2x mb-2"></i>
-                    <h3>Antibiotics</h3>
-                    <p>Most Affected Category: Antibiotics or any specific drug group.</p>
-                    <a href="#" class="btn btn-primary ">View more</a>
+            <div class="card shadow h-100 position-relative">
+                <span class="position-absolute top-0 end-0 badge bg-info m-2">{% trans "Alert" %}</span>
+                <div class=" text-dark d-flex flex-column h-100">
+                    <i class="fas fa-syringe fa-2x mb-2 mt-3"></i>
+                    <h3>{% trans "Antibiotics" %}</h3>
+                    <p class="flex-grow-1">{% trans "Most Affected Category: Antibiotics or any specific drug group." %}</p>
+                    <a href="#" class="btn btn-primary mb-3">{% trans "View more" %}</a>
                 </div>
             </div>
         </div>
@@ -103,15 +107,23 @@
 <!-- Chart.js -->
 <script src="{% static 'js/chart.min.js' %}"></script>
 <script>
+    var labels = [
+        "{% trans 'Jan' %}", "{% trans 'Feb' %}", "{% trans 'Mar' %}", 
+        "{% trans 'Apr' %}", "{% trans 'May' %}", "{% trans 'Jun' %}", 
+        "{% trans 'Jul' %}", "{% trans 'Aug' %}", "{% trans 'Sep' %}", 
+        "{% trans 'Oct' %}", "{% trans 'Nov' %}", "{% trans 'Dec' %}"
+    ];
+    var datasetLabel = "{% trans 'Monthly Progress' %}";
+
     var ctx = document.getElementById('monthlyProgressChart').getContext('2d');
     var monthlyProgressChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: labels,
             datasets: [{
-                label: 'Monthly Progress',
+                label: datasetLabel,
                 data: [30, 20, 50, 40, 60, 70, 100, 80, 90, 60, 50, 30], // Example data
-                backgroundColor: 'rgba(75, 192, 192, 0.6)'
+                backgroundColor: 'rgba(40, 185, 94, 0.6)' // Changed to green color
             }]
         },
         options: {

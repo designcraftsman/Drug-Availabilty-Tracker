@@ -1,3 +1,8 @@
+$dark-grey: #1E1E1E;
+$grey: #292929;
+$light-grey: #757B82;
+$light: #b0b8c1;
+
 body.dark-mode {
     background-color: #121212;
     color: #ffffff;
@@ -7,12 +12,17 @@ body.dark-mode {
         border-color: #333;
     }
     .bg-white{
-        background-color: #1e1e1e !important;
-    }
+        background-color: #2E2E2E !important;
+    }  
     .bg-light{
-        background-color: #292727 !important;
+        background-color: $dark-grey !important;
     }
-
+    .breadcrumb-item.active , .breadcrumb-item.active::after , .breadcrumb-item.active::before{
+        color: white !important;
+    }
+    input , select ,input[type="search"]::placeholder{
+        color: $light !important;
+    }  
     .card-header {
         background-color: #2c2c2c;
         border-bottom-color: #333;
@@ -28,7 +38,7 @@ body.dark-mode {
     }
     .table-adaptive {
         color: #fff;
-        background-color: #1e1e1e;
+        background-color: $grey;
 
         th {
             background-color: #2c2c2c;
@@ -51,17 +61,26 @@ body.dark-mode {
         border-color: #444;
         color: #ffffff;
     }
-
+    .report-container {
+        /* Circular chart styles */
+        .circular-chart {
+            .circle-bg {
+                stroke: #bababa !important;
+            }
+        }
+    }
+    
     .btn-primary {
         background-color: #1a5928;
         border-color: #1a5928;
+        color: white !important;
     }
 
     .btn-primary:hover {
         background-color: #217a33;
         border-color: #217a33;
+        color: white !important;
     }
-    
 
     // Add more dark mode styles as needed
 }
